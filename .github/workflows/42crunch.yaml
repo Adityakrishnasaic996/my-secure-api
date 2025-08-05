@@ -1,0 +1,21 @@
+name: 42Crunch API Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  scan:
+    name: Scan OpenAPI with 42Crunch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: 42Crunch OpenAPI Static Security Testing
+        uses: 42Crunch/api-security-audit-action@v3
+        with:
+          api-definition: openapi.yaml
