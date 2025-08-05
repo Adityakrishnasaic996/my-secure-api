@@ -2,6 +2,9 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+todos = [{"id":1,"task":"learn Flask"},
+         {"id":2,"task":"run codeQl"},
+         ]
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({"status": "UP"})
@@ -12,5 +15,10 @@ def home():
 @app.route("/hello/<name>", methods=['GET'])
 def hello(name):
     return jsonify({f"hello: {name}"})
+
+@app.route("/todos", methods=['GET'])
+def get_todos():
+    return jsonify(todos)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
